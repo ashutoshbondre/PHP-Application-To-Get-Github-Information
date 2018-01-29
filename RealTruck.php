@@ -2,23 +2,24 @@
 
 $githubapi = "https://api.github.com";
 
-// Curl Instance
-
 error_reporting(E_ERROR | E_PARSE);
 
 // First argument - github user name
 $username = $argv[1];
+
 if($username=="")
 {
     echo("User Name not given \nType 'php RealTruck.php --help' for more help.\n");
     exit();
 }
+
 // Second argument - Order of sort needed ("asc" or "des")
 $sortOrder = $argv[2];
 
 if($username=="--help" || $sortOrder=="--help")
     printhelp();
 
+// REST API Request to validate given UserName.
 $getUser = "/users/".$username;
 $ch1 = curl_init();
 curl_setopt($ch1, CURLOPT_URL, $githubapi.$getUser);
@@ -51,6 +52,7 @@ curl_close($ch);
 $array = array();
 $data = json_decode($result);
 foreach($data as $item) {
+
     // Storing Repo name & respective stargazers in an array
     $array[] = array($item->name,$item->stargazers_count);
 }
@@ -89,8 +91,7 @@ function printhelp()
 // Sort the table according to number of stargazers.
 usort($array,$sortOrder);
 
-// We need to include this path to use pear and consequently Console_Table.
-// I have used console table to give out aesthetically pleasant output on the console.
+// Table.php is the file which will help us print in aesthetically pleasant form.
 
 require_once 'Table.php';
 $tbl = new Console_Table();
