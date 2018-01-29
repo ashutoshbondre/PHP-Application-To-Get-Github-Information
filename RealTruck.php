@@ -92,8 +92,7 @@ usort($array,$sortOrder);
 // We need to include this path to use pear and consequently Console_Table.
 // I have used console table to give out aesthetically pleasant output on the console.
 
-set_include_path(".:/usr/local/pear/share/pear");
-require_once 'Console/Table.php';
+require_once 'Table.php';
 $tbl = new Console_Table();
 $tbl->setHeaders(array('Repository Name', 'Star Gazers'));
 
