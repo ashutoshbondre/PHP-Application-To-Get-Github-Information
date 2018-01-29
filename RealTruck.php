@@ -95,7 +95,7 @@ usort($array,$sortOrder);
 
 require_once 'Table.php';
 $tbl = new Console_Table();
-$tbl->setHeaders(array('Repository Name', 'Star Gazers'));
+$tbl->setHeaders(array('Repository Name', 'Stargazers'));
 
 foreach($array as $item) {
 
